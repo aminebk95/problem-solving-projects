@@ -1,0 +1,22 @@
+You are given a positive integer n. Each digit of n has a sign according to the following rules:
+
+The most significant digit is assigned a positive sign.
+Each other digit has an opposite sign to its adjacent digits.
+Return the sum of all digits with their corresponding sign.
+int alternateDigitSum(int n) {
+    int i=n,signe,nb=0,s=0;
+    while(i){
+        i=i/10;
+        nb++;
+    }
+    if(nb%2==0)
+        signe=-1;
+    else
+        signe=1;
+    while(n){
+        s=s+(n%10)*signe;
+        n=n/10;
+        signe=signe*(-1);
+    }
+    return s;
+}
