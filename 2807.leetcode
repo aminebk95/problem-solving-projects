@@ -1,0 +1,45 @@
+Given the head of a linked list head, in which each node contains an integer value.
+
+Between every pair of adjacent nodes, insert a new node with a value equal to the greatest common divisor of them.
+
+Return the linked list after insertion.
+
+The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+ int pgcd(int a, int b) {
+    int temp;
+    while (b != 0) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+void inserer_apres(int x,struct ListNode *p)
+{
+    struct ListNode *q;
+    q=(struct ListNode*)malloc(sizeof(struct ListNode));
+    q->val=x;
+    q->next=p->next;
+    p->next=q;
+}
+struct ListNode* insertGreatestCommonDivisors(struct ListNode* head){
+    if(head->next== NULL)
+        return head;
+    struct ListNode *p=head;
+    int x;
+    while(p->next){
+        x=pgcd(p->val,p->next->val);
+        inserer_apres(x,p);
+        p=p->next->next;
+    }
+    return head;
+}
