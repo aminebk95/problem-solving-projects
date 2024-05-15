@@ -1,0 +1,11 @@
+# problem-solving
+Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+876.MIDDLE OF THE LINKED LIST
+struct ListNode* middleNode(struct ListNode* head) {
+    struct ListNode *fast=head,*slow=head;
+    while(fast && fast->next){
+        fast=fast->next->next;
+        slow=slow->next;
+    }
+    return slow;
+}
